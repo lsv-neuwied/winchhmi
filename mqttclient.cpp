@@ -88,10 +88,7 @@ int MqttClient::connectBroker(const QString &host, int port, int keepalive, unsi
         return rc;
     }
 
-    rc = mosquitto_connect_async(mosq, host.toLocal8Bit().constData(), port, keepalive);
-    if (rc != MOSQ_ERR_SUCCESS) {
-        return rc;
-    }
+    mosquitto_connect_async(mosq, host.toLocal8Bit().constData(), port, keepalive);
 
     rc = mosquitto_loop_start(mosq);
     if (rc != MOSQ_ERR_SUCCESS) {
